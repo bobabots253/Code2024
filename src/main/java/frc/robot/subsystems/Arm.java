@@ -54,7 +54,6 @@ public class Arm extends SubsystemBase {
     }
 
 
-
     public void setOpenLoop(double value) {
         SmartDashboard.putNumber("Arm Commanded arm actuation", value);
         motorR.set(value);

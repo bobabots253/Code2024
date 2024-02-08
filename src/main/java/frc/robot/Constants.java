@@ -148,12 +148,12 @@ public final class Constants {
     // add id's
     public static final int rightArmMotorID = 0;
     public static final int leftArmMotorID = 0;
-    public static final double stow = 0;
-    public static final double score = 0;
+    public static final double stow = 0; //encoder value of STOW  pos, should be 0.00
+    public static final double score = 0; // encoder value of SCORE pos. Should be relative to STOW
     public static double kP = 0.1;
     public static double kI = 0.0;
     public static double kD = 0.05;
-
+    // temporary PID values, safe-kinda
   }
 
   public static int c_driverController;
