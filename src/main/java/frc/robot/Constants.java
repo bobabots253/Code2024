@@ -158,12 +158,17 @@ public final class Constants {
 
   public static int c_driverController;
 
-  // public static final class HookConstants {
+  public static final class HookConstants {
 
-  //   public static final int motorID = 0;
-  //   public static final double stow = 0;
-  //   public static final double open = 0;
-  //   public static final double score = 0;
+    public static final int motorID = 0;
+    public static final double stow = 0;
+    public static final double open = 0;
+    public static final double score = 0; //update the constants
 
-  // }
+    public static final double kP = 0.2;
+    public static final double kI = 0.0;
+    public static final double kD = 0.05;
+    }
+
 }
+

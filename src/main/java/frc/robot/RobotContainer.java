@@ -20,6 +20,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Hook;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -43,7 +44,7 @@ public class RobotContainer {
 
   //The rest of buttons
    private final Arm arm = Arm.getInstance();
-//   private final Hook hook = Hook.getInstance();
+  private final Hook hook = Hook.getInstance();
 
 
   private static RobotContainer instance = null;
@@ -104,7 +105,7 @@ public class RobotContainer {
             m_robotDrive));
 
     arm.setDefaultCommand(stowArm());
-    // hook.setDefaultCommand(stowHook());
+    hook.setDefaultCommand(stowArm());
   }
 
   public Command stowArm() {
@@ -113,6 +114,14 @@ public class RobotContainer {
 
   public Command scoreArm(){
     return new RunCommand(() -> arm.setArmState(States.ArmPos.SCORE), arm);
+  }
+
+  public Command stowHook(){
+    return new RunCommand(() -> hook.setHookState(States.HookPos.STOW), hook);
+  }
+
+  public Command scoreHook(){
+    return new RunCommand(() -> hook.setHookState(States.HookPos.OPEN), hook);
   }
 
 //   public Command stowHook() {
@@ -126,6 +135,12 @@ public class RobotContainer {
     
     driver_Y
         .onTrue(scoreArm());
+
+    driver_A
+        .onTrue(stowHook());
+    
+    driver_B
+        .onTrue(scoreHook());
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
