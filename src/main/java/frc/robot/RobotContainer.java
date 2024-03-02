@@ -21,6 +21,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.HookConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.PathPlannerConstants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Eyes;
@@ -140,7 +141,7 @@ public class RobotContainer {
    *
    * @return The current alliance of the robot.
    */
-  public Command goToPosition(Pose2d target, float goalEndVelocity, float rotationDelayDistance) {
+  public Command goToPosition(Pose2d target, double goalEndVelocity, double rotationDelayDistance) {
     // Create the constraints to use while pathfinding
     PathConstraints constraints = Constants.AutoConstants.pathConstraints;
     // Since AutoBuilder is configured, we can use it to build pathfinding commands
@@ -187,6 +188,17 @@ public class RobotContainer {
       .whileTrue(
         new RunCommand(() -> hook.setHookState(States.HookPos.STOW), hook)
       );
+
+    driver_X.whileTrue(
+      new RunCommand(() -> goToPosition(
+        new Pose2d(
+          PathPlannerConstants.ampX, 
+          PathPlannerConstants.ampY, 
+          Rotation2d.fromDegrees(PathPlannerConstants.ampDegrees)
+        ), 
+        0, 1.
+        ), m_robotDrive)
+    );
 
     operator_Y
       .whileTrue(

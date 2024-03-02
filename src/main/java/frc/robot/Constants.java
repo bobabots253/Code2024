@@ -117,6 +117,13 @@ public final class Constants {
     public static final int kTurningMotorCurrentLimit = 20; // amps
   }
 
+  public static final class PathPlannerConstants {
+
+    public static final double ampX = 0;
+    public static final double ampY = 0;
+    public static final double ampDegrees = 0;
+    
+  }
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final double kDriveDeadband = 0.07; //0.05
