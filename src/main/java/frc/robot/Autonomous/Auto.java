@@ -57,4 +57,18 @@ public static Command getPathPlannerCommandAmp() {
     return new PathPlannerAuto("B_DriveAwayStraight3mAuto");
     // INSERT AUTO NAME INTO THE CHOICE!
   }
+
+  public static Command anniversaryDance() {
+    return new SequentialCommandGroup(
+      driveTime(0.2, 0., 0, 1.),
+      driveTime(0, 0, 0, 0.5),
+      driveTime(0, 0, 0.3, 2.7),
+      driveTime(0, 0, 0, 2),
+      new InstantCommand(() -> RobotContainer.getInstance().arm.setArmState(States.ArmPos.SCORE), RobotContainer.getInstance().arm),
+      new WaitCommand(1.2),
+      new InstantCommand(() -> RobotContainer.getInstance().hook.setHookPosition(0.25)),
+      new WaitCommand(0.75),
+      new InstantCommand(() -> RobotContainer.getInstance().hook.setHookState(States.HookPos.STOW))
+    );
   }
+}
