@@ -5,29 +5,25 @@
 package frc.robot;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.first.apriltag.AprilTagDetection;
 import edu.wpi.first.apriltag.AprilTagDetector;
-import edu.wpi.first.apriltag.AprilTagPoseEstimator;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.math.estimator.PoseEstimator;
-import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Autonomous.Auto;
 import frc.robot.Constants.VisionConstants;
+import frc.robot.Autonomous.Auto;
 import frc.robot.subsystems.Eyes;
 import frc.utils.CoordinateSpace;
 
@@ -110,13 +106,18 @@ public class Robot extends TimedRobot {
   void apriltagVisionThreadProc() {
     AprilTagDetector detector = new AprilTagDetector();
     detector.addFamily("tag16h5", 0);
+
+    int streamPort = 1185;
+    MjpegServer inputStream = new MjpegServer("MJPEG Server", streamPort);
   
     // Get the UsbCamera from CameraServer
-    UsbCamera camera = CameraServer.startAutomaticCapture();
+    // UsbCamera camera = CameraServer.startAutomaticCapture();
+    UsbCamera camera = setUsbCamera(0, inputStream);
 
     CoordinateSpace coordinateSpace = new CoordinateSpace(VisionConstants.cameraWidth, VisionConstants.cameraHeight);
     // Set the resolution
-    camera.setResolution((int)coordinateSpace.width, (int)coordinateSpace.height);
+    // camera.setResolution((int)coordinateSpace.width, (int)coordinateSpace.height);
+    camera.setResolution(1280, 720);
 
     // Get a CvSink. This will capture Mats from the camera
     CvSink cvSink = CameraServer.getVideo();
@@ -212,6 +213,11 @@ public class Robot extends TimedRobot {
     }
 
     detector.close();
+  }
+  private UsbCamera setUsbCamera(int i,  MjpegServer server) {
+    UsbCamera camera = new UsbCamera("CoprocessorCamera", 0); //default 0
+    server.setSource(camera);
+    return camera;
   }
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics

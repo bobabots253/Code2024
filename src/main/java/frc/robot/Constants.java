@@ -189,7 +189,7 @@ public final class Constants {
     
   }
   public static final class VisionConstants {
-    public static final int cameraWidth = 320;
-    public static final int cameraHeight = 240; 
+    public static final int cameraWidth = 640;
+    public static final int cameraHeight = 480; 
   }
 }
