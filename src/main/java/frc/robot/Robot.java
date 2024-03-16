@@ -240,6 +240,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = Auto.anniversaryDance();
+    // m_autonomousCommand = Auto.anniversaryDance();
     // m_autonomousCommand = Auto.ScoreAutoOneNoteAmp();
     // m_autonomousCommand = Auto.driveTime(1,1 ,1 ,1 ); // replace with actual values
     // m_autonomousCommand = null;

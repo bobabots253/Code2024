@@ -58,10 +58,15 @@ public static Command getPathPlannerCommandAmp() {
     // INSERT AUTO NAME INTO THE CHOICE!
   }
 
+  public static Command appearAutoCommand(){
+    return new PathPlannerAuto("FakeAnniAuto");
+    // INSERT AUTO NAME INTO THE CHOICE!
+  }
+
   public static Command anniversaryDance() {
     return new SequentialCommandGroup(
-      driveTime(0.2, 0., 0, 1.),
-      driveTime(0, 0, 0, 0.5),
+      // driveTime(0.2, 0., 0, 1.),
+      Auto.appearAutoCommand(),
       driveTime(0, 0, 0.3, 2.82),
       driveTime(0, 0, 0, 1),
       new InstantCommand(() -> RobotContainer.getInstance().arm.setArmState(States.ArmPos.SCORE), RobotContainer.getInstance().arm),
@@ -72,7 +77,9 @@ public static Command getPathPlannerCommandAmp() {
       new WaitCommand(0.25),
       new InstantCommand(() -> RobotContainer.getInstance().hook.setHookPosition(0.25)),
       new WaitCommand(0.25),
-      new InstantCommand(() -> RobotContainer.getInstance().hook.setHookState(States.HookPos.STOW))
+      new InstantCommand(() -> RobotContainer.getInstance().hook.setHookState(States.HookPos.STOW)),
+      new WaitCommand(.5),
+      new InstantCommand(() -> RobotContainer.getInstance().arm.setArmState(States.ArmPos.STOW), RobotContainer.getInstance().arm)
     );
   }
 }
