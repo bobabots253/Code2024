@@ -159,16 +159,16 @@ public final class Constants {
     public static final double stow = 0.120; //0.; // 0.318 abs 500:1 - 0.120
     public static final double score = 4.85; //7.904655; //8.268729; //1.65;//relative encoder DO NOT use 1.65 // 500:1 score - 8.15
     public static final double max = 5; //8.21! //500:1 max - 8.16
-    public static final double climb_up = 4.143260; //1.25; //500:1 - cu - 7.238
+    public static final double climb_up = 3.56; //4.143260; //1.25; //500:1 - cu - 7.238
     public static final double climb_down = -.15; //0.148; // 500:1 cd - -.15
     public static final double pidOutputLow = -1;
     public static final double pidOutputHigh = 1.2;
     public static double kP = 1.5; //500:1 - 1.2
     public static double kI = 0.0;
     public static double kD = 0.7; // 500:1 - 0.3
-    public static double climbP = 1; // 500:1 - 1.0
+    public static double climbP = 0.5; // 500:1 - 1.0
     public static double climbI = 0.0;
-    public static double climbD = 0.0;
+    public static double climbD = 0.2;
     
 
   }
