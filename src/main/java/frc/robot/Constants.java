@@ -191,5 +191,11 @@ public final class Constants {
   public static final class VisionConstants {
     public static final int cameraWidth = 320;
     public static final int cameraHeight = 240; 
+    public static final double kPAim = 0.35; // These are sample number don't try yet -seo
+    public static final double kPDistance = 0.1; // This too -seo
+    public static final double mountAngle = 25.0; // This is all fake numbers and should be how many degreees back the limelight is rotated from perfectly vertical
+    public static final double lensHeight = 20.0; // Distance from the center of the lime light lens to the floor
+    public static final double goalHeight = 60.0; // distance of the target from the floor. -seo
+
   }
 }
