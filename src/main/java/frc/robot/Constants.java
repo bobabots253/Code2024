@@ -196,6 +196,8 @@ public final class Constants {
     public static final double mountAngle = 25.0; // This is all fake numbers and should be how many degreees back the limelight is rotated from perfectly vertical
     public static final double lensHeight = 20.0; // Distance from the center of the lime light lens to the floor
     public static final double goalHeight = 60.0; // distance of the target from the floor. -seo
+    public static final double humanHeight = 80.0;
+    public static final double ampHeight = 70.0;
 
   }
 }
